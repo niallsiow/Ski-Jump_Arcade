@@ -11,6 +11,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     bool start = true;
 
+
+    public float jumpForce;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,12 @@ public class PlayerBehaviour : MonoBehaviour
             myRigidbody.isKinematic = false;
             start = false;
             myRigidbody.AddForce(force, ForceMode.Impulse);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Vector3 jumpVector = transform.up * jumpForce;
+            myRigidbody.AddForce(jumpVector, ForceMode.Impulse);
         }
     }
 }
