@@ -7,8 +7,9 @@ public class PlayerBehaviour : MonoBehaviour
 
     Rigidbody myRigidbody;
 
-    float forceAmount = 10;
+    public float forceAmount;
 
+    bool start = true;
 
     // Start is called before the first frame update
     void Start()
@@ -19,9 +20,17 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if(start == true)
+        {
+            myRigidbody.useGravity = false;
+        }
+        
         Vector3 force = transform.forward * forceAmount;
 
-        if (Input.GetButtonDown("Fire1")) {
+        if (Input.GetButtonDown("Fire1") && start == true) {
+            myRigidbody.useGravity = true;
+            start = false;
             myRigidbody.AddForce(force, ForceMode.Impulse);
         }
     }
