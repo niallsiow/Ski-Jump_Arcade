@@ -23,13 +23,13 @@ public class PlayerBehaviour : MonoBehaviour
 
         if(start == true)
         {
-            myRigidbody.useGravity = false;
+            myRigidbody.isKinematic = true;
         }
         
         Vector3 force = transform.forward * forceAmount;
 
         if (Input.GetButtonDown("Fire1") && start == true) {
-            myRigidbody.useGravity = true;
+            myRigidbody.isKinematic = false;
             start = false;
             myRigidbody.AddForce(force, ForceMode.Impulse);
         }
